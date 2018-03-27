@@ -45,6 +45,7 @@ MatchGame.renderCards = function(cardValues, $game) {
   // $("#game").empty();
   $game.empty();
   $game.data("flippedCards", []);
+  $game.data("moves", 0);
 
   for(var i = 0; i < cardValues.length; i++) {
     var $card = $("<div class=\"col-xs-3 cardcontainer\">" +
@@ -122,8 +123,21 @@ MatchGame.flipCard = function($card, $game) {
     }
     // reset array of flipped cards
     $game.data("flippedCards", []);
+
+    incrementMoves($game);
   }
 };
+
+function incrementMoves($game) {
+  // count
+  var moves = $game.data("moves");
+  // console.log(++moves);
+  $game.data("moves", moves);
+
+  var $moves = $("#moves");
+
+  $moves.text("Moves: " + moves);
+}
 
 function initCard($card, cardData) {
   var $back = $card.find(".back");
