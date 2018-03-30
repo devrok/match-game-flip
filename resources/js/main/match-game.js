@@ -1,8 +1,12 @@
 $(document).ready(function() {
-  var cardValues = MatchGame.generateCardValues();
   var $game = $("#game");
 
-  MatchGame.renderCards(cardValues,$game);
+
+  MatchGame.initializeGame($game);
+
+  $("#restart").click(function() {
+    MatchGame.initializeGame($game);
+  });
 });
 
 var MatchGame = {};
@@ -10,6 +14,14 @@ var MatchGame = {};
   Sets up a new game after HTML document has loaded.
   Renders a 4x4 board of cards.
 */
+MatchGame.initializeGame = function ($game) {
+
+  var cardValues = MatchGame.generateCardValues();
+
+  updateMovesValueAndText(0, $game);
+
+  MatchGame.renderCards(cardValues,$game);
+}
 
 /*
   Generates and returns an array of matching card values.
@@ -131,11 +143,15 @@ MatchGame.flipCard = function($card, $game) {
 function incrementMoves($game) {
   // count
   var moves = $game.data("moves");
-  // console.log(++moves);
+  updateMovesValueAndText(++moves, $game);
+}
+
+function updateMovesValueAndText(moves, $game) {
+  // set value
   $game.data("moves", moves);
 
+  // update text
   var $moves = $("#moves");
-
   $moves.text("Moves: " + moves);
 }
 

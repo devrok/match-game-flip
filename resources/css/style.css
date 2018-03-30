@@ -47,6 +47,16 @@ p {
   font-size: 1rem;
   color: rgb(74, 74, 74);
 }
+
+.row > div {
+  padding: 0.125rem;
+}
+
+.btn.btn-primary {
+  background-color: rgb(32, 64, 86);
+  border-color: rgb(255, 255, 255);
+}
+
 .container {
   padding-top: 5.25rem;
 }
@@ -106,7 +116,7 @@ p {
 }
 
 #card .front {
-  background: rgb(32, 64, 86);
+  background-color: rgb(32, 64, 86);
 }
 
 #card .back {
